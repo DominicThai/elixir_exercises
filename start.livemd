@@ -7,6 +7,8 @@ Welcome to a journey through the most simple elements of the [Elixir](https://el
 * **Functional:** This is a programming paradigm (a way of approaching programming tasks). The industry (and especially the Danish industry) is dominated by object-oriented languages. That is a different paradigm. But that doesn't mean that functional programming doesn't have its place.
 * **Actor model:** This is probably the easiest to use concurrency model, and that is key when one has to deal with many operations that happen concurrently. That is, instead of having a single flow through the program, there can be a large number of more or less independent flows.
 
+**Note:** This workshop does not try to be completely technically correct all the time. Being so would require it to be much larger and significantly less approachable to newcomers.
+
 <!-- livebook:{"break_markdown":true} -->
 
 We will be working with Elixir through [Livebook](https://livebook.dev). This is a code editor that you essentially access through a browser. There are many ways of writing Elxir code (that doesn't involve a browser), but this brings some attractive possibilities regarding getting an overview of the code and data visualization.
