@@ -17,7 +17,7 @@ The first step is to read up on primitive concurrency in Elixir. Do so by follow
 
 <!-- livebook:{"break_markdown":true} -->
 
-The [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence) is used in several datastructures, appears in [nature](https://en.wikipedia.org/wiki/Fibonacci_sequence#Nature), and has even been used for composing [music](https://www.youtube.com/watch?v=Y7JG63IuaWs). It is a sequence of integer numbers defined by:
+The [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence) is used in several data structures, appears in [nature](https://en.wikipedia.org/wiki/Fibonacci_sequence#Nature), and has even been used for composing [music](https://www.youtube.com/watch?v=Y7JG63IuaWs). It is a sequence of integer numbers defined by:
 
 $
 \hspace{20mm}

@@ -2,7 +2,7 @@
 
 ## Preparation
 
-As covered in a previous module, a map is a type of datastructure where keys point to values, and the value associated with a particular key can easily be looked up. This works really well for purposes where the set of keys change over time.
+As covered in a previous module, a map is a type of data structure where keys point to values, and the value associated with a particular key can easily be looked up. This works really well for purposes where the set of keys change over time.
 
 But this is not always the case. Sometimes, what we want is to define a map and know that a specific set of keys are present. This is particularly useful when defining types. For instance, we might define a person as:
 
@@ -66,7 +66,7 @@ Use the cell below to figure out how this function works. You may want to hover 
 
 ```
 
-Create a new defintion of `Person` in the cell below. Start out with a copy of the above definition, and add a function called `birthday` that takes a person and returns the same person except that the returned person has an age that is one higher than that of the input person.
+Create a new definition of `Person` in the cell below. Start out with a copy of the above definition, and add a function called `birthday` that takes a person and returns the same person except that the returned person has an age that is one higher than that of the input person.
 
 ```elixir
 

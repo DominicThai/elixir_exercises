@@ -9,7 +9,7 @@ Mix.install([
 
 ## Preparation
 
-In this notebook we are going to work with anoymous functions. A function is a piece of code that takes zero or more inputs and produces an output.
+In this notebook we are going to work with anonymous functions. A function is a piece of code that takes zero or more inputs and produces an output.
 
 The following function takes exactly one input and delivers this as its output:
 
@@ -77,7 +77,7 @@ Implement a `circumference` function that given a radius of a circle calculates 
 
 ```
 
-Pick a smalles and a largest interesting radius, and produce a dataset in the variable `data_circumference` which is in a format that allows it to be plotted:
+Pick a smallest and a largest interesting radius, and produce a dataset in the variable `data_circumference` which is in a format that allows it to be plotted:
 
 ```elixir
 

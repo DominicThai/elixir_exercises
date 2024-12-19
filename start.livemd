@@ -4,8 +4,8 @@
 
 Welcome to a journey through the most simple elements of the [Elixir](https://elixir-lang.org) programming language. Elixir was designed for building critical production systems. It is a [functional language](https://en.wikipedia.org/wiki/Functional_programming) and implements the [actor model](https://en.wikipedia.org/wiki/Actor_model). But what does that mean?
 
-* **Functional:** This is a programming paradigm (a way of approaching programming tasks). The industry (and especially the Danish industry) is dominated by object-oriented langauges. That is a different paradigm. But that doesn't mean that functional programming doesn't have its place.
-* **Actor model:** This is probably the easiest to use concurrency model, and that is key when one has to deal with many operations that happen concurrently. That is, instead of havin a single flow through the program, there can be a large number of more or less independent flows.
+* **Functional:** This is a programming paradigm (a way of approaching programming tasks). The industry (and especially the Danish industry) is dominated by object-oriented languages. That is a different paradigm. But that doesn't mean that functional programming doesn't have its place.
+* **Actor model:** This is probably the easiest to use concurrency model, and that is key when one has to deal with many operations that happen concurrently. That is, instead of having a single flow through the program, there can be a large number of more or less independent flows.
 
 <!-- livebook:{"break_markdown":true} -->
 
