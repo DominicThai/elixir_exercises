@@ -1,0 +1,153 @@
+# Module 4: Lists, Higher-Order Functions, Pipelining and Modules
+
+## Forberedelse
+
+[Earlier](beginner1.livemd) we covered tuples. They are data structures that can hold a specific number of elements. We can extract the value of such an element from a tuple either using pattern matching or using the `elem` function:
+
+```elixir
+elem({0, 1, 2, 3}, 2)
+```
+
+**Note:** `elem` is not an nanonymous function, and that is why we don't use the `.` operator to call it.
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Lists
+
+<!-- livebook:{"break_markdown":true} -->
+
+Tuples are a good choice for holding a number of values, when that number is known when the code is written and fixed over time. But this is not always the case. Often, we wish our code to work with an arbitrary nymber of values. For this, we use a list:
+
+```elixir
+l = [0, 1, 2, 3, 4]
+```
+
+We can use pattern matching to name (via variables) the head of the list (that is the first element) and the tail of the list (the rest of the elements, in list form). This turns out the be very usable when we later want to iterate through a list, and do something with each element. Pattern matching against a list looks like this (and can be combined with, e.g., pattern matching of a tuple):
+
+```elixir
+[h|t] = l
+```
+
+```elixir
+{h, t}
+```
+
+In the last cell, we construct a tuple where the first element is the value of the value of the variable `h`, and the second and last element is the value of the variable `t`.
+
+<!-- livebook:{"break_markdown":true} -->
+
+We can also use the same syntax to construct a new list by adding a head to a list. To do so it shouldn't appear on the left-hand side of a `=` operator:
+
+```elixir
+[-1|l]
+```
+
+We also have the option of using the `at` function in the `Enum` module to index a list. Note that elements are indexed using integers starting at 0. It looks like this:
+
+```elixir
+Enum.at(l, 3)
+```
+
+### Higher-Order Functions
+
+<!-- livebook:{"break_markdown":true} -->
+
+Elixir comes with a number of highly applicable so-called *higher-order functions*. In this module, we will look into three of them:
+
+* `map` Applies a function to each element of a list and returns a list of the resulting values.
+* `filter` Constructs a list of all elements from an input list where an expression (in the form of a function) evaluates to `true`.
+* `reduce` Iterates through an input list, and applies a function to the combination of an initial value and the first element of the list. The it applies the same function to the result of the first application and the second value. And so on ... until the last value has been treated to the same procedure and the result of this is then returned.
+
+But lets see some examples:
+
+<!-- livebook:{"break_markdown":true} -->
+
+First, lets define a list with a number of integer values:
+
+```elixir
+l1 = [12, -3, -14, -2, 1, 6, 7, -4, 16, 5, 3, -7, 0, 0, 2, -1, 8]
+```
+
+We can use `map` to create a new list wherein each individual element of `l1` has been incremented by 1:
+
+```elixir
+l2 = Enum.map(l1, fn element -> element + 1 end)
+```
+
+Then, we can remove all negative elements (≥ is written as `>=`):
+
+```elixir
+l3 = Enum.filter(l2, fn element -> element >= 0 end)
+```
+
+Finally, we can calculate the sum of all the elements:
+
+```elixir
+Enum.reduce(l3, 0, fn element, acc -> element + acc end)
+```
+
+### Pipelining
+
+<!-- livebook:{"break_markdown":true} -->
+
+All of this can also be written as:
+
+```elixir
+Enum.reduce(
+  Enum.filter(
+    Enum.map(
+      [12, -3, -14, -2, 1, 6, 7, -4, 16, 5, 3, -7, 0, 0, 2, -1, 8],
+      fn element -> element + 1 end),
+    fn element -> element >= 0 end),
+  0,
+  fn element, acc -> element + acc end)
+```
+
+It is incredibly common to see such a chain of function calls where output from one function is used as input to the next. To make this *patter* easier to read, syntax has been added for *piping* output from one function into the first parameter of another. This is done with the `|>` operator (which is often drawn as an empty triangle resembling a right arrow). Using this, we can rewrite the code as:
+
+```elixir
+[12, -3, -14, -2, 1, 6, 7, -4, 16, 5, 3, -7, 0, 0, 2, -1, 8]
+|> Enum.map(fn element -> element + 1 end)
+|> Enum.filter(fn element -> element >= 0 end)
+|> Enum.reduce(0, fn element, acc -> element + acc end)
+```
+
+### Modules with Functions
+
+<!-- livebook:{"break_markdown":true} -->
+
+But how are these higher-order functions made?
+
+Named (as oposed to anonymous) functions are placed in modules. In the next cell, you will find a module that implements the `map` function. Technically, there are two function declarations, but Elixir uses pattern matching to decide which declaration needs to be called: If the first declaration matches, then it is called. Otherwise the next is checked.
+
+In this particular case, the first declaration handles the empy list, and the second handles all inputs other inputs (of type `list`). The second decaration repeatedly cuts off the *head* of the list and processes this. When that leaves us with an empty list remaining, then the first declaration will make sure the procesing stops.
+
+The implementation exploits a feature of the language whereby function inputs can be functions. One such function is applied to each *head* during the iteration and thus *transforms* it. The new value is pretty much sewed into a new list that is being constructed one element at a time. It essentially functions as a zipper.
+
+```elixir
+defmodule MyEnum do
+  def map([], _fun), do: []
+  def map([h|t], fun) do
+    [fun.(h) | map(t, fun)]
+  end
+end
+```
+
+And this code works exactly as the `map` function that is defined in `Enum`:
+
+```elixir
+[12, -3, -14, -2, 1, 6, 7, -4, 16, 5, 3, -7, 0, 0, 2, -1, 8]
+|> MyEnum.map(fn element -> element + 1 end)
+```
+
+## Exercise
+
+In the following cell, make a copy of the contents of the cell with the definition of `MyEnum`. Add and implement your own version of the `filter` function next to the the `map` funktion:
+
+```elixir
+
+```
+
+## Next step ...
+
+Well done, you have just implemented some real functionality! When done, go to the next exercise [here](module5.livemd).

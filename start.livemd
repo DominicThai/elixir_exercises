@@ -1,0 +1,66 @@
+# Start
+
+## Introduction
+
+Welcome to a journey through the most simple elements of the [Elixir](https://elixir-lang.org) programming language. Elixir was designed for building critical production systems. It is a [functional language](https://en.wikipedia.org/wiki/Functional_programming) and implements the [actor model](https://en.wikipedia.org/wiki/Actor_model). But what does that mean?
+
+* **Functional:** This is a programming paradigm (a way of approaching programming tasks). The industry (and especially the Danish industry) is dominated by object-oriented langauges. That is a different paradigm. But that doesn't mean that functional programming doesn't have its place.
+* **Actor model:** This is probably the easiest to use concurrency model, and that is key when one has to deal with many operations that happen concurrently. That is, instead of havin a single flow through the program, there can be a large number of more or less independent flows.
+
+<!-- livebook:{"break_markdown":true} -->
+
+We will be working with Elixir through [Livebook](https://livebook.dev). This is a code editor that you essentially access through a browser. There are many ways of writing Elxir code (that doesn't involve a browser), but this brings some attractive possibilities regarding getting an overview of the code and data visualization.
+
+First, you will have to [install](https://livebook.dev/\#install) Livebook, and then you should configure it:
+
+1. Open the main page in a new tab in your browser. This can be done using the Livebook logo at the top left of the page.
+2. Click in this tab on `Settings` in the menu to the left.
+3. Under `Code editor` you enable `Render ligatures`.
+
+<!-- livebook:{"break_markdown":true} -->
+
+Next, you will need to choose between two difficulties:
+
+1. **Beginner:** If you have never programmed before you start [here](module1.livemd).
+2. **Advanced:** If you feel like you have a good feel for at least one programming language then you start [here](module8.livemd).
+
+<!-- livebook:{"break_markdown":true} -->
+
+This choice will send you through the following material:
+
+<!-- livebook:{"break_markdown":true} -->
+
+<!-- Learn more at https://mermaid-js.github.io/mermaid -->
+
+```mermaid
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
+graph TD;
+  Module1["`**Module 1:**
+Values, tuples and pattern matching`"];
+  Module2["`**Module 2:**
+Booleans, if, string and case`"];
+  Module3["`**Module 3:**
+Functions`"];
+  Module4["`**Module 4:**
+Lists, higher order functions, pipelining and modules`"];
+  Module5["`**Module 5:**
+Maps`"];
+  Module6["`**Module 6:**
+Colors`"];
+  Module7["`**Module 7:**
+Structs`"];
+  
+  Module8["`**Module 8:**
+Circles`"];
+  Module9["`**Module 9:**
+Fibonacci Sequence`"];
+  Module10["`**Module 10:**
+Concurrency`"];
+  
+  Start-->Module1-->Module2-->Module3-->Module4-->Module5-->Module6-->Module7-->Module8;
+  Start-->Module8-->Module9-->Module10;
+```
+
+<!-- livebook:{"break_markdown":true} -->
+
+If this is interesting to you, then you could spend a bit of time watching some live coding with José Valim (the creator of Elixir) [here](https://www.youtube.com/watch?v=mDxJjqx5-ns&list=PLNP8vc86_-SOV1ZEvX_q9BLYWL586zWnF).

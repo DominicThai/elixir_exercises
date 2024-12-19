@@ -1,0 +1,219 @@
+# Module 5: Maps
+
+## Preparation
+
+A map is a datastructure that associates every element from one set of values with exactly one element from another set of values. The value from the first set has the role of a *key* and the value from the second set takes the role of a *value*. Maps are also known as key-values stores, and allows us to look up the value associated with a key.
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Basics
+
+<!-- livebook:{"break_markdown":true} -->
+
+Lets try to use a map to represent the relationship between month abbreviations and the lengths of these months:
+
+```elixir
+leap_year = false
+month_lengths = %{
+  "jan" => 31,
+  "feb" => 28 + if leap_year do 1 else 0 end,
+  "mar" => 31,
+  "apr" => 30,
+  "may" => 31,
+  "jun" => 30,
+  "jul" => 31,
+  "aug" => 31,
+  "sep" => 30,
+  "oct" => 31,
+  "nov" => 30,
+  "dec" => 31,
+}
+```
+
+Using the `Map.get` function we can look up the length of any month:
+
+```elixir
+"October is #{Map.get(month_lengths, "oct")} days long"
+```
+
+In Danish the month October is spelled "Oktober" and abbreviated "okt". What happens when we try to look this up?
+
+```elixir
+Map.get(month_lengths, "okt")
+```
+
+The `nil` value is used to indicate the absense of a value.
+
+<!-- livebook:{"break_markdown":true} -->
+
+A variant of this function can be given a default value to return in case the key is not present:
+
+```elixir
+"October is #{Map.get(month_lengths, "okt", "<unknown>")} days long"
+```
+
+We can add (or override) a key-value association:
+
+```elixir
+month_lengths = Map.put(month_lengths, "okt", 31)
+"October is #{Map.get(month_lengths, "okt", "<unknown>")} days long"
+```
+
+We can ask whether a key is present in a map:
+
+```elixir
+Map.has_key?(month_lengths, "oct")
+```
+
+### Arbitrary Keys
+
+<!-- livebook:{"break_markdown":true} -->
+
+So far we have used strings as keys, but any value can be used. They could, for instance, be tuples:
+
+```elixir
+month_lengths = %{
+  {:da, "jan"} => 31,
+  {:da, "feb"} => 28 + if leap_year do 1 else 0 end,
+  {:da, "mar"} => 31,
+  {:da, "apr"} => 30,
+  {:da, "maj"} => 31,
+  {:da, "jun"} => 30,
+  {:da, "jul"} => 31,
+  {:da, "aug"} => 31,
+  {:da, "sep"} => 30,
+  {:da, "okt"} => 31,
+  {:da, "nov"} => 30,
+  {:da, "dec"} => 31,
+  {:en, "jan"} => 31,
+  {:en, "feb"} => 28 + if leap_year do 1 else 0 end,
+  {:en, "mar"} => 31,
+  {:en, "apr"} => 30,
+  {:en, "may"} => 31,
+  {:en, "jun"} => 30,
+  {:en, "jul"} => 31,
+  {:en, "aug"} => 31,
+  {:en, "sep"} => 30,
+  {:en, "oct"} => 31,
+  {:en, "nov"} => 30,
+  {:en, "dec"} => 31,
+}
+```
+
+**Note:** The keys (and values for that matter) don't even have to have the same type.
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Atoms as Keys
+
+<!-- livebook:{"break_markdown":true} -->
+
+A common special case is that in which all keys are atoms:
+
+```elixir
+month_lengths = %{
+  jan: 31,
+  feb: 28 + if leap_year do 1 else 0 end,
+  mar: 31,
+  apr: 30,
+  may: 31,
+  jun: 30,
+  jul: 31,
+  aug: 31,
+  sep: 30,
+  oct: 31,
+  nov: 30,
+  dec: 31,
+}
+```
+
+Then, we can access the values associated with individual keys using the `.`operator:
+
+```elixir
+month_lengths.oct
+```
+
+### Converting to and from Lists
+
+<!-- livebook:{"break_markdown":true} -->
+
+Maps can be treated as lists:
+
+```elixir
+month_lengths
+|> Enum.map(fn {key, value} -> "#{key} has the value #{value}" end)
+```
+
+When treated as a list, every key-value association is represented as a tuple, and that is something we can pattern match on in the function we give to `Enum.map`.
+
+<!-- livebook:{"break_markdown":true} -->
+
+The same format (a list of two-element tuples) can likewise be converted to a map:
+
+```elixir
+l = [
+  {"jan", 31},
+  {"feb", 28 + if leap_year do 1 else 0 end},
+  {"mar", 31},
+  {"apr", 30},
+  {"maj", 31},
+  {"jun", 30},
+  {"jul", 31},
+  {"aug", 31},
+  {"sep", 30},
+  {"okt", 31},
+  {"nov", 30},
+  {"dec", 31},
+]
+```
+
+```elixir
+Map.new(l)
+```
+
+Notice the subtle difference in how the results are displayed.
+
+## Exercise
+
+Lets take a completely random year as a starting point:
+
+```elixir
+year = 2024
+```
+
+The rules of [leap years](https://en.wikipedia.org/wiki/Leap_year) states that:
+
+*"This extra leap day occurs in each year that is a multiple of 4, except for years evenly divisible by 100 but not by 400"*
+
+Declare a variable called `leap_year?` and bind it to a truth value that indicates whether an extra day needs to be added to the month of February. This should take into account the value of `year`.
+
+You can test it by setting your cell to auto-evaluate and trying out different values for `year`
+
+Go ahead in the cell below:
+
+```elixir
+
+```
+
+Write, in the following code cell, a module called `Calendar`.
+
+In this module you:
+
+* Add a function called `generate_month_lengths` that takes a year as a parameter, and -- based on this year -- it produces and returns a map of of this year.
+* Add a function called `generate` that takes two parameters, namely `min_year` and `max_year`. It should iterate through the years in between these (both included), and for each year call `generate_month_lengths`. The result of this function call is used to construct a map such that you can look up a year and get the result of `generate_month_lengths`. This map from month to year-calendar is returned.
+
+In the next code cell, you should use `generate` to produce a calendar ranging from year 0 to year 3000.
+
+```elixir
+
+```
+
+```elixir
+
+```
+
+## Next step ...
+
+Wow, a calendar ... though primitive, that's a usable thing! And you can imaging adding weekdays and -- through rules expressed as functions, maps lists or a combination hereof -- to add holidays and religious events.
+
+But lets progress to the next exercise [here](module6.livemd).

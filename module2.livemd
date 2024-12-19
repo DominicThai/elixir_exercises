@@ -1,0 +1,175 @@
+# Module 2: Booleans, if, string and case
+
+## Preparation
+
+### Boolean Expressions
+
+<!-- livebook:{"break_markdown":true} -->
+
+We can work with truth values (aka [boolean](https://en.wikipedia.org/wiki/Boolean_algebra) values):
+
+```elixir
+true
+```
+
+```elixir
+false
+```
+
+A comparison (that is `==`, `>=`. `<=`, `>`, `<` and `!=`) creates a truth value:
+
+```elixir
+page_count = 108
+long_book = page_count > 100
+```
+
+There are special operators that we can use to do calculations on truth values:
+
+```elixir
+reached_top = true
+first = false
+winner = reached_top and first
+```
+
+```elixir
+best = true
+winner = first or best
+```
+
+```elixir
+looser = not winner
+```
+
+These expressions can be combined:
+
+```elixir
+looser = not (first or best)
+```
+
+### The if-do-else and if constructions
+
+<!-- livebook:{"break_markdown":true} -->
+
+Lets take a look at a circle:
+
+```elixir
+r = 12
+```
+
+The radius variable can be negative, zero or positive. Often, we have a need to handle such possibilities in different ways. This can be done using the `if` construct:
+
+```elixir
+{:success, area} =
+  if r<0 do
+    {:error, :negative_radius}
+  else
+    {:success, :math.pi * r*r}
+  end
+```
+
+Notes:
+
+* Names starting with a colon are of a special type called [atoms](https://hexdocs.pm/elixir/1.12/Atom.html). Their role is to be equal to them selves and nothing else. One could have used a unique integer instead, but as humans we are capable of interpreting the name of the atom to improve readability. Also, this means that we won't have to keep track of which integers have been used.
+* In this code we use pattern matching to -- in the case of a success -- bind the variable `area` to the result of the calculation. If the match fails then we will get a `MatchError`. So far, this is not a problem for us. Elixir has mechanisms to deal with problems such as this.
+
+<!-- livebook:{"break_markdown":true} -->
+
+There is another variant of the `if` construct that is missing the `else` part. This variant only does something if the condition (the truth value) evaluates to `true`. This is often used to print something to the screen:
+
+```elixir
+if area > 180 do
+  IO.puts("That's a big circle!")
+end
+```
+
+### Text Strings
+
+<!-- livebook:{"break_markdown":true} -->
+
+A text string (or just *string*) is essentially a sequence of characters. We will often print it out using `IO.puts`. That looks like this:
+
+```elixir
+IO.puts("Hello, World")
+```
+
+Strings can be concatenated using the `<>` operator:
+
+```elixir
+"Hello"<>", World"
+```
+
+But we can also compose them using exising names and expressions:
+
+```elixir
+"A circle with radius #{r} has the area #{:math.pi * r*r}!"
+```
+
+Some times you want a string that spans multiple lines. That is best done like this:
+
+```elixir
+s =
+  """
+  A circle with radius #{r} has ...
+  - An area of #{:math.pi * r*r}, and
+  - A circumference of #{2 * :math.pi * r}
+  """
+IO.puts(s)
+```
+
+### The case construction
+
+<!-- livebook:{"break_markdown":true} -->
+
+An `if` construction has at most two outcomes, and the choice between these is expressed as an expression that evaluates to a boolean value. That can be quite limiting.
+
+<!-- livebook:{"break_markdown":true} -->
+
+The most commonly used alternative is to use the `case` construction. Here, one value is compared with a number of patterns. The first pattern that matches dictates the outcome:
+
+```elixir
+result = {:error, {:reason, "incompetence"}}
+
+case result do
+  {:error, :paper_jam} -> {:result, "printer is jamming"}
+  {:error, {:code, 12}} -> {:result, "house on fire"}
+  {:error, {:reason, reason}} -> {:result, "error due to reason '#{reason}'"}
+  {:success, value} -> {:result, "succeeded with value #{value}"}
+  _ -> {:result, "This matches anything"}
+end
+```
+
+## Exercise
+
+Try to scroll up to the cell where the variable `r` is defined. Adjust the value to $-3$ and evaluate the next cell. What happens?
+
+<!-- livebook:{"break_markdown":true} -->
+
+We are at a birthday party with a number of participants:
+
+```elixir
+participant_count = 13
+```
+
+The host has made a layered cake. Slicing a cake is easiest if the number of slices is even. Based on the variable `participant_count`, assign the variable `easy` a truth value representing whether the job of slicing is easy.
+
+**Note:** The function `rem` returns the remainder of an integer division. `rem(value, 2)` will thus evaluate to $1$ if `value` is odd.
+
+```elixir
+
+```
+
+Use an `if` construction to either print out "It is easy" or "It is hard" based on the value of the variable `easy`:
+
+```elixir
+
+```
+
+Do the same with a `case` construction:
+
+```elixir
+
+```
+
+## Next step ...
+
+When you are done, you can continue with the next exercise [here](module3.livemd).

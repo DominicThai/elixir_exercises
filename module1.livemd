@@ -1,0 +1,136 @@
+# Module 1: Values, Tuples and Pattern Matching
+
+## Introduction
+
+AS you have never programmed before we will start slowly.
+
+<!-- livebook:{"break_markdown":true} -->
+
+Livebook is an interactive development environment that is accessed through a browser. You work is organized in notebooks which are physically stored on the machine that hosts Livebook. You have now seen two of these; first the `Start` one and then this `Beginner 1` one. If such a notebook is associated with a filename then it will be automatically saved. You can make sure this is the case by ckicking on the disk/save icon in the lower right corner of this screen. No need to do it for this notebook though, as it has already been done.
+
+A notebook is structured in sections. In each such section one can place cells with [markdown code](https://www.markdownguide.org/cheat-sheet/) (suvh as this one), Elixir code or other. Markdown is a form of structured text. If you click this text and click the edit icon that appears above it to the right, then you can edit the text.
+
+When you move the mouse in between two cells you will be presented with a number of options for adding a cell. When the mouse overs over an existing cell you will be presented with options for interacting with this cell. An Elixir cell, for instance, can be evaluated by pressing `➤ Evaluate` just above the cell to the left.
+
+## Preparation
+
+### Values and Expressions
+
+<!-- livebook:{"break_markdown":true} -->
+
+All valid Elixir code will evaluate to a value. Here are a few simple examples:
+
+```elixir
+"Hello, World"
+```
+
+```elixir
+42
+```
+
+```elixir
+1+2
+```
+
+```elixir
+:math.pi
+```
+
+### Tuples
+
+<!-- livebook:{"break_markdown":true} -->
+
+Data can be organized in tuples. This is a form of data structure that represents a sequence of values. A tuple can be treated as a single value even if it contains multiple values. Here are a few examples of tuples:
+
+```elixir
+{1,2}
+```
+
+```elixir
+{1,2,3}
+```
+
+```elixir
+{"a", 1}
+```
+
+```elixir
+{1,{2,3}}
+```
+
+### Pattern matching
+
+<!-- livebook:{"break_markdown":true} -->
+
+Elixir has a match operator `=` which attempts to bind whatever is at the left-hand side of the operator to the values on the right-hand side of it. This is typically used for two purposes:
+
+1. To check that something is the case. For instance, to check that a value has a specific structure. Here, you can use the `_` character to mark elements that you have no need to refer to.
+2. To bind variable names to parts of a structure. This means that a *name* is introduced (that we can refer to at a later point in the code), and that this name is associated with a value.
+
+A few examples:
+
+```elixir
+pi = :math.pi
+```
+
+```elixir
+pi
+```
+
+```elixir
+t = {1, 2}
+```
+
+```elixir
+{42, {tx, _}} = {42, t}
+```
+
+```elixir
+tx
+```
+
+```elixir
+{x, _y} = t
+```
+
+```elixir
+x
+```
+
+```elixir
+_y
+```
+
+That last one should produce a warning stating that Elixir does not know about the variable `_y`. This is because it starts with an underscore character and thus hasn't been bound on the line where `x` was bound.
+
+## Exercise
+
+A circle has a diameter of $30.9$:
+
+```elixir
+d = 30.9
+```
+
+Calculate the radius (by dividing the value of `d` with two) and bind the variable `r` to the result of this calculation:
+
+```elixir
+
+```
+
+A circle with radius $r$ has the circumference $2 \pi r$. Calculate the circumference of the circle in the following cell:
+
+```elixir
+
+```
+
+To the right of the `➤ Evaluate` button, you will find a drop-down menu. This menu contains an option for automatically evaluating a cell with the contents of the previous code cell has changed.
+
+Now, you should:
+
+1. Make sure the two previous Elixir cells are configured to automatically evaluate.
+2. Change the definition of `d` in the above cell to have the value `:math.pi`.
+3. Observe the result of the previous cell.
+
+## Next step ...
+
+Good, we have now covered the *basics*. Lets continue with the next exercise [here](module2.livemd).

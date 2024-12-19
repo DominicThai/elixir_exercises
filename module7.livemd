@@ -1,0 +1,109 @@
+# Module 7: Structs
+
+## Preparation
+
+As covered in a previous module, a map is a type of datastructure where keys point to values, and the value associated with a particular key can easily be looked up. This works really well for purposes where the set of keys change over time.
+
+But this is not always the case. Sometimes, what we want is to define a map and know that a specific set of keys are present. This is particularly useful when defining types. For instance, we might define a person as:
+
+```elixir
+defmodule Person do
+  defstruct [:name, :age, :nationality, :alive?]
+
+  def first_name(person) do
+    person.name |> String.split(" ") |> Enum.at(0)
+  end
+end
+```
+
+Lets create an instance of this type:
+
+```elixir
+person = %Person{name: "Keira Knightley", age: 39, nationality: :english, alive?: true}
+```
+
+We can call associated functions:
+
+```elixir
+Person.first_name(person)
+```
+
+Is this person alive?
+
+```elixir
+person.alive?
+```
+
+Sometimes a field of a struct needs to be updated. For instance, once a year the age of a living person should be incremented:
+
+```elixir
+person = Map.put(person, :age, person.age + 1)
+```
+
+We can treat the struct as a map and add keys:
+
+```elixir
+ person = Map.put(person, :cpr, "1234567890")
+```
+
+Note the presence of the key `__struct__`. This is how Elixir differentiates between maps and structs. This particular key tells Elixir that this map adheres to template defined in the `Person` struct.
+
+## Exercise
+
+In the definition of `Person`, we skipped over this detail:
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+def first_name(person) do
+  person.name |> String.split(" ") |> Enum.at(0)
+end
+```
+
+Use the cell below to figure out how this function works. You may want to hover the mouse over some of the functions.
+
+```elixir
+
+```
+
+Create a new defintion of `Person` in the cell below. Start out with a copy of the above definition, and add a function called `birthday` that takes a person and returns the same person except that the returned person has an age that is one higher than that of the input person.
+
+```elixir
+
+```
+
+Now, test this function:
+
+```elixir
+
+```
+
+Lets introduce some people:
+
+```elixir
+people = [
+  person,
+  %Person{name: "Helen Mirren", age: 79, nationality: :english, alive?: false},
+  %Person{name: "William Shakespeare", age: 52, nationality: :english, alive?: true},
+  %Person{name: "Edward Norton", age: 55, nationality: :american, alive?: true},
+  %Person{name: "Amy Acker", age: 48, nationality: :american, alive?: true},
+  %Person{name: "Hedy Lamarr", age: 85, nationality: :austrian, alive?: false},
+  %Person{name: "José Valim", age: nil, nationality: :brazilian, alive?: true},
+  %Person{name: "Grace Hopper", age: 85, nationality: :american, alive?: false},
+]
+```
+
+Calculate the average age of these people.
+
+Hints:
+
+* The `nil` value is used to indicate the absence of a (valid) value.
+* The built-in `length` function will return the length of a list.
+
+```elixir
+
+```
+
+## Next step ...
+
+When done, go to the next exercise [here](module8.livemd).

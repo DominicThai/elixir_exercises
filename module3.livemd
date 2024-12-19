@@ -1,0 +1,112 @@
+# Module 3: Functions
+
+```elixir
+Mix.install([
+  {:vega_lite, "~> 0.1.10"},
+  {:kino_vega_lite, "~> 0.1.13"}
+])
+```
+
+## Preparation
+
+In this notebook we are going to work with anoymous functions. A function is a piece of code that takes zero or more inputs and produces an output.
+
+The following function takes exactly one input and delivers this as its output:
+
+```elixir
+fn input -> input end
+```
+
+**Note:** Elixir tells us that this one line evaluates to a function. Lets try to assign it to a variable:
+
+```elixir
+pipethrough = fn input -> input end
+```
+
+This allows us to call it with a concrete value using the `.` operator and at set of parentheses:
+
+```elixir
+pipethrough.(42)
+```
+
+And yes: Input became output!
+
+<!-- livebook:{"break_markdown":true} -->
+
+We can also define a function that represents the mathematical function $f(x) = 1.2x^2-1.3x+0.9$:
+
+```elixir
+f = fn x -> 1.2*x*x - 1.3*x + 0.9 end
+```
+
+With this definition in place, we can calculate $f(10)$:
+
+```elixir
+f.(10)
+```
+
+Now, we can take a sequence of $x$-values, calculate the matching $f(x)$-values, and then convert each matching combination to a map (I do not expect you to understand this code):
+
+```elixir
+data =
+  -10..10
+  |> Enum.map(fn x -> %{"x" => x, "f(x)" => f.(x)} end)
+```
+
+We can use `VegaLite` to plot these data. For convenience reasons we start by creating an `Vl` alias. That way, we don't have to write `VegaLite` all the time:
+
+```elixir
+alias VegaLite, as: Vl
+```
+
+Now we can perform the plotting:
+
+```elixir
+Vl.new(width: 400, height: 300)
+|> Vl.data_from_values(data)
+|> Vl.mark(:point)
+|> Vl.encode_field(:x, "x", type: :quantitative)
+|> Vl.encode_field(:y, "f(x)", type: :quantitative)
+```
+
+## Exercise
+
+Implement a `circumference` function that given a radius of a circle calculates the circumference of that circle:
+
+```elixir
+
+```
+
+Pick a smalles and a largest interesting radius, and produce a dataset in the variable `data_circumference` which is in a format that allows it to be plotted:
+
+```elixir
+
+```
+
+Now plot the data:
+
+```elixir
+
+```
+
+Hover the mouse over the last `Vl.encode_field` line until you see a popup. In this popup you will find a `View on Hexdocs` link. Open this link in a new tab. Look through the documentation and figure out how to define a title for an axis.
+
+Make a copy of the previous cell in the cell below, and update it with names for the two axes:
+
+```elixir
+
+```
+
+## Next step ...
+
+One of the above cells looked like this:
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+data =
+  -10..10
+  |> Enum.map(fn x -> %{"x" => x, "f(x)" => f.(x)} end)
+```
+
+What does that even mean? We will figure out [here](module4.livemd).

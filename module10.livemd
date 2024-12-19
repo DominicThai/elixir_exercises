@@ -1,0 +1,174 @@
+# Module 10: Concurrency
+
+```elixir
+Mix.install([
+  {:vega_lite, "~> 0.1.10"},
+  {:kino_vega_lite, "~> 0.1.13"}
+])
+```
+
+## Preparation
+
+The first step is to read up on GenServer-based concurrency in Elixir. Do so by following these instructions:
+
+1. Check out the GIT repository at [https://github.com/aslakjohansen/livebook-demos](https://github.com/aslakjohansen/livebook-demos)) or download the contents as a zip file.
+2. Open `index.livemd` from this repository in Livebook and evaluate the last cell if necessary.
+3. Scroll down to the demo labeled *"Generic servers, registries and supervision"* and click your way through it. Note that this is more advanced than the contents of last modules *"Primitive concurrency"* notebook.
+
+<!-- livebook:{"break_markdown":true} -->
+
+### Starting Point
+
+<!-- livebook:{"break_markdown":true} -->
+
+In this exercise we will attempt to model a bakery. This bakery has a number of bakers who each know how to bake a single product. There is also a number of customers who -- for the sake of simplicity -- keeps ordering the same product.
+
+Both roles (baker and customer) are implemented as *genservers*, and two *registers* (one for each role) are used to keep track of the individual instances.
+
+<!-- livebook:{"break_markdown":true} -->
+
+Lets first take a look at the code for the baker role:
+
+```elixir
+{:ok, baker_registry_pid} = Registry.start_link(name: BakerRegistry, keys: :duplicate)
+```
+
+```elixir
+defmodule Baker do
+  use GenServer
+  
+  # (client) interface
+  
+  def start(product, name) do
+    GenServer.start(__MODULE__, [product: product, name: name])
+  end
+  
+  def order(product) do
+    case Registry.lookup(BakerRegistry, product) do
+      [] ->
+        {:error, "No provider for '#{product}'"}
+      workers ->
+        {pid, _} = Enum.random(workers)
+        GenServer.cast(pid, {:order, self()})
+        :ok
+    end
+  end
+  
+  # callbacks
+  
+  @impl true
+  def init([product: product, name: _] = state) do
+    Registry.register(BakerRegistry, product, _value = nil)
+    {:ok, state}
+  end
+  
+  @impl true
+  def handle_cast({:order, client}, [product: product, name: name] = state) do
+    :timer.sleep(Enum.random(1600..3200))
+    GenServer.cast(client, {:cake, product, name})
+    {:noreply, state}
+  end
+end
+```
+
+And then the code for the customer role:
+
+```elixir
+{:ok, customer_registry_pid} = Registry.start_link(name: CustomerRegistry, keys: :duplicate)
+```
+
+```elixir
+defmodule Customer do
+  use GenServer
+  
+  # (client) interface
+  
+  def start(product, name) do
+    GenServer.start(__MODULE__, [product: product, name: "Customer #{name}"])
+  end
+  
+  # callbacks
+  
+  @impl true
+  def init([product: product, name: _] = state) do
+    Baker.order(product)
+    {:ok, state}
+  end
+
+  @impl true
+  def handle_cast({:cake, product, name}, [product: p, name: n] = state) do
+    IO.puts("[#{n}] Got #{product} from #{name}: Yum! Lets have one more ...")
+    Baker.order(p)
+    {:noreply, state}
+  end
+end
+```
+
+At this point we can start some bakers:
+
+```elixir
+{:ok, baker_1_pid} = Baker.start("Red Velvet Cheesecake", "John")
+{:ok, baker_2_pid} = Baker.start("Red Velvet Cheesecake", "Alberte")
+{:ok, baker_3_pid} = Baker.start("Red Velvet Cheesecake", "Sofie")
+{:ok, baker_4_pid} = Baker.start("Lemon Pie", "Freja")
+{:ok, baker_5_pid} = Baker.start("Lemon Pie", "Birger")
+{:ok, baker_6_pid} = Baker.start("Carrot Cake", "Hans")
+{:ok, baker_7_pid} = Baker.start("Carrot Cake", "Anders")
+{:ok, baker_8_pid} = Baker.start("Carrot Cake", "Signe")
+bakers = [baker_1_pid, baker_2_pid, baker_3_pid, baker_4_pid, baker_5_pid, baker_6_pid, baker_7_pid, baker_8_pid]
+```
+
+As well as some customers:
+
+```elixir
+products = ["Red Velvet Cheesecake", "Lemon Pie", "Carrot Cake"]
+
+1..20
+|> Enum.map(fn name -> Customer.start(Enum.random(products), name) end)
+```
+
+## Exercise
+
+Step through the code we have covered so far, and use the mouse-over tooltips to find the documentation that explains the elements you don't understand. There is probably a few.
+
+<!-- livebook:{"break_markdown":true} -->
+
+The next step is to introduce a `Clerk` genserver for representing a clerk. Clerks are intermediaries between the customers and the bakers. It looks a bit like this:
+
+<!-- livebook:{"break_markdown":true} -->
+
+```mermaid
+graph LR;
+  Customer1-->Clerk1;
+  Customer1-->Clerk2;
+  Customer2-->Clerk1;
+  Customer2-->Clerk2;
+  Customer3-->Clerk1;
+  Customer3-->Clerk2;
+  Customer4-->Clerk1;
+  Customer4-->Clerk2;
+  Clerk1-->Baker1;
+  Clerk2-->Baker1;
+  Clerk1-->Baker2;
+  Clerk2-->Baker2;
+  Clerk1-->Baker3;
+  Clerk2-->Baker3;
+```
+
+<!-- livebook:{"break_markdown":true} -->
+
+A customer needs to be able to ask a clerk which products can be ordered. After receiving this list, a customer will order a random product from the list of offered products. Upon receiving an order, the clerk will then order a baker with the right skills (they only know how to bake a single product, remember?) to fulfill the order. The clerks keeps tract of how many orders they have completed of each product. That part is done in a separate genserver.
+
+<!-- livebook:{"break_markdown":true} -->
+
+If done right, no customer will care how many clerks you have (beyond the first one), and no clerk will care how many bakers you have. The more of each set you have, the better the system will scale.
+
+<!-- livebook:{"break_markdown":true} -->
+
+The exercise is to make the changes necessary in order to make this new model work. Quite a few changes are necessary. A good strategy is to pick a manageable subset of this functionality and implement it. Then you can pick a new manageable subset of the remaining functionality and implement that. And keep doing so until everything is implemented.
+
+**Note:** When doing larger changes like this, it is a good practice to frequently back up the file.
+
+## Next step ...
+
+This is the end of the planned part of the workshop and where our paths separate. Your next step is to come up with an exercise of your own, and then solve it. Best of luck!

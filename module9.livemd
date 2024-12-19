@@ -1,0 +1,99 @@
+# Module 9: Fibonacci Sequence
+
+```elixir
+Mix.install([
+  {:vega_lite, "~> 0.1.10"},
+  {:kino_vega_lite, "~> 0.1.13"}
+])
+```
+
+## Preparation
+
+The first step is to read up on primitive concurrency in Elixir. Do so by following these instructions:
+
+1. Check out the GIT repository at [https://github.com/aslakjohansen/livebook-demos](https://github.com/aslakjohansen/livebook-demos)) or download the contents as a zip file.
+2. Open `index.livemd` from this repository in Livebook and evaluate the last cell if necessary.
+3. Scroll down to the demo labeled *"Primitive concurrency"* and click your way through it. If you haven't programmed before, this just might end up being where you decide to end the workshop.
+
+<!-- livebook:{"break_markdown":true} -->
+
+The [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence) is used in several datastructures, appears in [nature](https://en.wikipedia.org/wiki/Fibonacci_sequence#Nature), and has even been used for composing [music](https://www.youtube.com/watch?v=Y7JG63IuaWs). It is a sequence of integer numbers defined by:
+
+$
+\hspace{20mm}
+\mathrm{fib}(n) =
+  \begin{cases}
+0, & \text{\color{violet} for n=0} \\
+n, & \text{\color{violet} for n=1} \\
+\mathrm{fib}(n-1)+\mathrm{fib}(n-2), & \text{\color{violet} for n>1} \\
+\end{cases}
+$
+
+Here is an implementation of that formula that can be used to calculate the $n$'th number of the sequence:
+
+```elixir
+defmodule Fibonacci do
+  def index(0), do: 0
+  
+  def index(1), do: 1
+  
+  def index(n) when is_integer(n) and n>1 do
+    index(n-1) + index(n-2)
+  end
+end
+```
+
+The first 40 Fibonacci numbers are:
+
+```elixir
+0..39 |> Enum.map(&Fibonacci.index/1)
+```
+
+Lets put ourselves through the exercise of indexing this implementation of the sequence randomly 1000 times. Here are the 1000 random values for $n$:
+
+```elixir
+ns =
+  1..1_000
+  |> Enum.map(fn _ -> Enum.random(1..39) end)
+```
+
+The naive solution is the calculate this *sequentially*:
+
+<!-- livebook:{"force_markdown":true} -->
+
+```elixir
+Enum.map(ns, &Fibonacci.index/1)
+```
+
+Sequential is a term used to describe that a task is solved one part after another. An alternative is *in parallel* which means that all parts are solved at the same time. That, however, requires the computer tasked with solving it to have at least one processor (technically: hardware thread) per part.
+
+By expressing the solution sequentially we cannot exploit that modern computers are capable of working on multiple tasks at any given time. The solution is to express the solution *concurrently*, meaning that it can utilize the available capabilities for parallelism without needing the hardware to actually offer any.
+
+## Exercise
+
+Implement a concurrent solution using the *fork-join* pattern described in the notebook you clicked your way through at the top of this workbook.
+
+A friend has left you with this starting point:
+
+```elixir
+defmodule Concurrent do
+  def map(elements, fun) do
+    # fork
+    res = Enum.map(elements, fn element -> process(element, fun) end)
+
+    # join
+  end
+
+  defp process(element, fun) do
+    fun.(element)
+  end
+end
+```
+
+```elixir
+Concurrent.map(ns, &Fibonacci.index/1)
+```
+
+## Next step ...
+
+That was likely quite hard. Lets take it up a notch by going [here](module10.livemd).
