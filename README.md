@@ -1,4 +1,4 @@
-# Introduktion to Programming in Elixir
+# Introduction to Programming in Elixir
 
 Start by opening [start.livemd](start.livemd) in [Livebook](https://livebook.dev), and follow the instructions.
 
