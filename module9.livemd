@@ -71,7 +71,7 @@ By expressing the solution sequentially we cannot exploit that modern computers 
 
 ## Exercise
 
-Implement a concurrent solution using the *fork-join* pattern described in the notebook you clicked your way through at the top of this workbook.
+Implement a concurrent solution using the *fork-join* pattern described in the notebook you clicked your way through at the beginning of this module.
 
 A friend has left you with this starting point:
 
