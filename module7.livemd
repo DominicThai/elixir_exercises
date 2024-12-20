@@ -60,7 +60,7 @@ def first_name(person) do
 end
 ```
 
-Use the cell below to figure out how this function works. You may want to hover the mouse over some of the functions.
+Use the cell below to experimentally figure out how this function works. You may want to hover the mouse over some of the functions.
 
 ```elixir
 
