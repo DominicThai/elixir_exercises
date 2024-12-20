@@ -165,7 +165,7 @@ If done right, no customer will care how many clerks you have (beyond the first 
 
 <!-- livebook:{"break_markdown":true} -->
 
-The exercise is to make the changes necessary in order to make this new model work. Quite a few changes are necessary. A good strategy is to pick a manageable subset of this functionality and implement it. Then you can pick a new manageable subset of the remaining functionality and implement that. And keep doing so until everything is implemented.
+The exercise is to make the changes necessary in order to make this new model work, and quite a few changes are necessary. A good strategy is to pick a manageable subset of this functionality and implement it. Then you can pick a new manageable subset of the remaining functionality and implement that. And you keep doing so until everything is implemented.
 
 **Note:** When doing larger changes like this, it is a good practice to frequently back up the file.
 
