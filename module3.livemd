@@ -53,7 +53,7 @@ data =
   |> Enum.map(fn x -> %{"x" => x, "f(x)" => f.(x)} end)
 ```
 
-We can use the `VegaLite` module to plot these data. For convenience reasons we start by creating an `Vl` alias. That way, we don't have to write `VegaLite` all the time:
+We can use the `VegaLite` package to plot these data. For convenience reasons we start by creating an `Vl` alias. That way, we don't have to write `VegaLite` all the time:
 
 ```elixir
 alias VegaLite, as: Vl
