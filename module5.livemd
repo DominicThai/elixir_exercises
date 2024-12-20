@@ -2,7 +2,7 @@
 
 ## Preparation
 
-A map is a data structure that associates every element from one set of values with exactly one element from another set of values. The value from the first set has the role of a *key* and the value from the second set takes the role of a *value*. Maps are also known as key-values stores, and allows us to look up the value associated with a key.
+A map is a datastructure that associates every element from one set of values with at most one element from another set of values. The value from the first set has the role of a *key* and the value from the second set takes the role of a *value*. Maps are also known as key-values stores, and allows us to look up the value associated with a key.
 
 <!-- livebook:{"break_markdown":true} -->
 
@@ -42,7 +42,7 @@ In Danish the month October is spelled "Oktober" and abbreviated "okt". What hap
 Map.get(month_lengths, "okt")
 ```
 
-The `nil` value is used to indicate the absence of a value.
+The `nil` value is used to indicate the absense of a value.
 
 <!-- livebook:{"break_markdown":true} -->
 
