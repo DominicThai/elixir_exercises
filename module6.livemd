@@ -23,7 +23,7 @@ kinos = [
 Kino.Layout.grid(kinos)
 ```
 
-Next, we create a "frame". This is a component where we can place different elements.
+Next, we create a "frame". This is a component in which we can place different elements.
 
 ```elixir
 frame = Kino.Frame.new() |> Kino.render()
