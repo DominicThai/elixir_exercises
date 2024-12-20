@@ -32,7 +32,7 @@ We can use pattern matching to name (via variables) the head of the list (that i
 {h, t}
 ```
 
-In the last cell, we construct a tuple where the first element is the value of the value of the variable `h`, and the second and last element is the value of the variable `t`.
+In the last cell, we construct a tuple where the first element is the value of the variable `h`, and the second and last element is the value of the variable `t`.
 
 <!-- livebook:{"break_markdown":true} -->
 
