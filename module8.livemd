@@ -102,8 +102,8 @@ Now, calculate the largest distance between the centers of any two circles in `c
 
 Hints:
 
-* In order to find all combinations to two lists, one can place one call to [Enum.map](https://hexdocs.pm/elixir/1.16.1/Enum.html#map/2) inside of another.
-* The [List.flatten](https://hexdocs.pm/elixir/1.16.1/List.html#flatten/1) function will convert a list of lists to simply a list of alle the values.
+* In order to find all combinations of elements from two lists, one can place one call to [Enum.map](https://hexdocs.pm/elixir/1.16.1/Enum.html#map/2) inside of another.
+* The [List.flatten](https://hexdocs.pm/elixir/1.16.1/List.html#flatten/1) function will convert a list of lists to simply a list of all the values.
 * The [Enum.max](https://hexdocs.pm/elixir/1.16.1/Enum.html#max/1) function will give you the largest element of a list.
 
 ```elixir
