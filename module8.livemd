@@ -35,15 +35,15 @@ Lets use this type to declare a number of circles:
 
 ```elixir
 circles = [
-  %Circle{x: 0, y: 0, r: 1.6},
-  %Circle{x: -2, y: -3.5, r: -1.0},
-  %Circle{x: 2.5, y: 3, r: 2.0},
-  %Circle{x: -4, y: -2.5, r: 1.0},
-  %Circle{x: -2.5, y: 3, r: 2.0},
-  %Circle{x: 0, y: -4, r: -1.0},
-  %Circle{x: 2, y: -3.5, r: 1.0},
-  %Circle{x: 0, y: 0, r: -6.5},
-  %Circle{x: 4, y: -2.5, r: 1.0},
+  %Circle{x: 0, y: 0, r: 1.13137},
+  %Circle{x: -2, y: -3.5, r: -0.7071},
+  %Circle{x: 2.5, y: 3, r: 1.4142},
+  %Circle{x: -4, y: -2.5, r: 0.7071},
+  %Circle{x: -2.5, y: 3, r: 1.4142},
+  %Circle{x: 0, y: -4, r: -0.7071},
+  %Circle{x: 2, y: -3.5, r: 0.7071},
+  %Circle{x: 0, y: 0, r: -4.596},
+  %Circle{x: 4, y: -2.5, r: 0.7071},
 ]
 ```
 
