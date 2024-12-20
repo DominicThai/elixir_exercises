@@ -77,7 +77,7 @@ Implement a `circumference` function that given a radius of a circle calculates 
 
 ```
 
-Pick a smalles and a largest interesting radius, and produce a dataset in the variable `data_circumference` which is in a format that allows it to be plotted:
+Pick a smallest and a largest interesting radius, and produce a dataset in the variable `data_circumference` which is in a format that allows it to be plotted:
 
 ```elixir
 
