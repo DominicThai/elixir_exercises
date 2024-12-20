@@ -125,7 +125,7 @@ Create a new frame. You can optionally arrange the two frames in a grid. Start a
 
 <!-- livebook:{"break_markdown":true} -->
 
-If you have a good grasp of color theory, you can also create a third frame that shows the complementary color. But it is a bit more complicated and you have to define a separate GenServer.
+If you have a good grasp of color theory, you can also create a third frame that shows the complementary color. But it is a bit more complicated, and you have to define a separate GenServer.
 
 ## Next step ...
 
