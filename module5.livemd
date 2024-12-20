@@ -100,6 +100,13 @@ month_lengths = %{
 }
 ```
 
+This allows us to set a language and then look up the abbreviation:
+
+```elixir
+lang = :da
+Map.get(month_lengths, {lang, "okt"})
+```
+
 **Note:** The keys (and values for that matter) don't even have to have the same type.
 
 <!-- livebook:{"break_markdown":true} -->
