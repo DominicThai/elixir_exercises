@@ -120,7 +120,7 @@ But how are these higher-order functions made?
 
 Named (as oposed to anonymous) functions are placed in modules. In the next cell, you will find a module that implements the `map` function. Technically, there are two function declarations with the same function name, but Elixir uses pattern matching to decide which declaration needs to be called: If the first declaration matches, then it is called. Otherwise the next is checked.
 
-In this particular case, the first declaration handles the empy list, and the second handles all inputs other inputs (of type `list`). The second decaration repeatedly cuts off the *head* of the list and processes this. When that leaves us with an empty list remaining, then the first declaration will make sure the procesing stops.
+In this particular case, the first declaration handles the case of the empy list, and the second handles all inputs other inputs (of type `list`). The second decaration repeatedly cuts off the *head* of the list and processes this. When that leaves us with an empty list remaining, then the first declaration will make sure the procesing stops.
 
 The implementation exploits a feature of the language whereby function inputs can be functions. One such function is applied to each *head* during the iteration and thus *transforms* it. The new value is pretty much sewed into a new list that is being constructed one element at a time. It essentially functions as a zipper.
 
