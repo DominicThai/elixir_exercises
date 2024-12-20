@@ -103,7 +103,7 @@ Enum.reduce(
   fn element, acc -> element + acc end)
 ```
 
-It is incredibly common to see such a chain of function calls where output from one function is used as input to the next. To make this *patter* easier to read, syntax has been added for *piping* output from one function into the first parameter of another. This is done with the `|>` operator (which is often drawn as an empty triangle resembling a right arrow). Using this, we can rewrite the code as:
+It is incredibly common to see such a chain of function calls where output from one function is used as input to the next. To make this *pattern* easier to read, syntax has been added for *piping* output from one function into the first parameter of another. This is done with the `|>` operator (which is often drawn as an empty triangle resembling a right arrow). Using this, we can rewrite the code as:
 
 ```elixir
 [12, -3, -14, -2, 1, 6, 7, -4, 16, 5, 3, -7, 0, 0, 2, -1, 8]
