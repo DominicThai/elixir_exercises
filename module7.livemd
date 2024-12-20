@@ -2,7 +2,7 @@
 
 ## Preparation
 
-As covered in a previous module, a map is a type of datas tructure where keys point to values, and the value associated with a particular key can easily be looked up. This works really well for purposes where the set of keys change over time.
+As covered in a previous module, a map is a type of data structure where keys point to values, and the value associated with a particular key can easily be looked up. This works really well for purposes where the set of keys change over time.
 
 But this is not always the case. Sometimes, what we want is to define a map and know that a specific set of keys are present. This is particularly useful when defining types. For instance, we might define a person as:
 
