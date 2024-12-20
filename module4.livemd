@@ -52,7 +52,7 @@ Enum.at(l, 3)
 
 <!-- livebook:{"break_markdown":true} -->
 
-Elixir comes with a number of highly applicable so-called *higher-order functions*. In this module, we will look into three of them:
+Elixir comes with a number of highly applicable so-called *higher-order functions*. They are functions that take other functions as parameters. In this module, we will look into three of them:
 
 * `map` Applies a function to each element of a list and returns a list of the resulting values.
 * `filter` Constructs a list of all elements from an input list where an expression (in the form of a function) evaluates to `true`.
