@@ -46,7 +46,7 @@ These expressions can be combined:
 looser = not (first or best)
 ```
 
-### The if-do-else and if constructions
+### The if-else and if constructions
 
 <!-- livebook:{"break_markdown":true} -->
 
