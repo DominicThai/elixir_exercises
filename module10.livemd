@@ -21,7 +21,7 @@ The first step is to read up on GenServer-based concurrency in Elixir. Do so by 
 
 <!-- livebook:{"break_markdown":true} -->
 
-In this exercise we will attempt to model a bakery. This bakery has a number of bakers who each know how to bake a single product. There is also a number of customers who -- for the sake of simplicity -- keeps ordering the same product.
+In this exercise we will attempt to model a bakery. This bakery has a number of bakers who each know how to bake only a single product, and they bake on order. There is also a number of customers who -- for the sake of simplicity -- keeps ordering the same product.
 
 Both roles (baker and customer) are implemented as *genservers*, and two *registers* (one for each role) are used to keep track of the individual instances.
 
