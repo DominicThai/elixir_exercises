@@ -83,7 +83,7 @@ Pick a smallest and a largest interesting radius, and produce a dataset in the v
 
 ```
 
-Now plot the data:
+Now plot these data:
 
 ```elixir
 
