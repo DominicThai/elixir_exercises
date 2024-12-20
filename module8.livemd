@@ -79,7 +79,7 @@ For this, you may want to try out the built-in [:math.sqrt](https://www.erlang.o
 
 ```
 
-Use the function you have just defined to double the area of each of the circles in the variable `circles` and rebind this variable to the resulting datastructure:
+Use the function you have just defined to double the area of each of the circles in the variable `circles` and rebind this variable to the resulting data structure:
 
 ```elixir
 
