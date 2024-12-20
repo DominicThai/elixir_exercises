@@ -110,7 +110,7 @@ Hints:
 
 ```
 
-The time has come to plot these circles. I have written some code that can plot data, but unfortunately this code doesn't know how to work with structs. Instead, it needs a list of maps where alle keys are strings. So, your job is to preprocess the data in `circles` in such a way that it adheres to the format supported by my code. Bin a variable called `data` to the resulting datastructure.
+The time has come to plot these circles. I have written some code that can plot data, but unfortunately this code doesn't know how to work with structs. Instead, it needs a list of maps where alle keys are strings. So, your job is to preprocess the data in `circles` in such a way that it adheres to the format supported by my code. Bind a variable called `data` to the resulting data structure.
 
 ```elixir
 
