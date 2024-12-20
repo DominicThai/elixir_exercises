@@ -134,7 +134,7 @@ month_lengths = %{
 }
 ```
 
-Then, we can access the values associated with individual keys using the `.`operator:
+Then, we can access the values associated with individual keys using the `.` operator:
 
 ```elixir
 month_lengths.oct
