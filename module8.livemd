@@ -53,7 +53,7 @@ Some of these circles have a negative radiuses. That is no good. In the next cel
 
 ```
 
-Write some code that calculates the total average of these circles.
+Write some code that calculates the total area of these circles.
 
 The area of a circle with radius $r$ is:
 
