@@ -87,7 +87,7 @@ defmodule Color do
 end
 ```
 
-Now that we have defined what our `Color` GenServer is, lets try starting one instance of it! If this operation is successful, then it will result in a process id (aka, a `pid`). This is what we need in order to name and address the new `Color` process. This is needed as we could have more than one.
+Now that we have defined what our `Color` GenServer is, lets try starting one instance of it! If successful, it will result in a process id (aka, a `pid`). This is what we need in order to name and address the new `Color` process. This is needed as we could have more than one.
 
 Starting it, and pattern matching our way to binding a variable to the pid looks like this:
 
