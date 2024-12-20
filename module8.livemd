@@ -47,7 +47,7 @@ circles = [
 ]
 ```
 
-Some of these circles has a negative radius. That is no good. In the next cell, write code that flips the negative radiuses (by multiplying them with $-1$). Rebind the `circles` variable to the resulting datastructure.
+Some of these circles have a negative radiuses. That is no good. In the next cell, write code that flips the negative radiuses (by multiplying them by $-1$). Rebind the `circles` variable to the resulting data structure.
 
 ```elixir
 
