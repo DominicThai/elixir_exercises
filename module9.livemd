@@ -57,7 +57,7 @@ ns =
   |> Enum.map(fn _ -> Enum.random(1..39) end)
 ```
 
-The naive solution is the calculate this *sequentially*:
+The naive solution is to calculate this *sequentially*:
 
 <!-- livebook:{"force_markdown":true} -->
 
@@ -67,7 +67,7 @@ Enum.map(ns, &Fibonacci.index/1)
 
 Sequential is a term used to describe that a task is solved one part after another. An alternative is *in parallel* which means that all parts are solved at the same time. That, however, requires the computer tasked with solving it to have at least one processor (technically: hardware thread) per part.
 
-By expressing the solution sequentially we cannot exploit that modern computers are capable of working on multiple tasks at any given time. The solution is to express the solution *concurrently*, meaning that it can utilize the available capabilities for parallelism without needing the hardware to actually offer any.
+By expressing the solution sequentially we cannot exploit that modern computers are capable of working on multiple tasks at any given time. The solution is to express the solution *concurrently*, meaning that it can utilize the available capabilities for parallelism without *needing* the hardware to actually offer any.
 
 ## Exercise
 
