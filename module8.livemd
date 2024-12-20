@@ -9,7 +9,7 @@ Mix.install([
 
 ## Preparation
 
-Lets take a look at a definition of a circle type:
+Lets take a look at a definition of a circle type that covers the center point and radius:
 
 ```elixir
 defmodule Circle do
@@ -49,7 +49,7 @@ circles = [
 ]
 ```
 
-Some of these circles has a negative radius. That is no good. In the next cell, write code that flips the negative radiuses (by multiplying them with $-1$). Rebind the `circles` variable to the resulting data structure.
+Some of these circles has a negative radius. That is no good. In the next cell, write code that flips the negative radiuses (by multiplying them with $-1$). Rebind the `circles` variable to the resulting datastructure.
 
 ```elixir
 
@@ -68,7 +68,7 @@ $
 
 ```
 
-Write a function that takes a radius as a single input (lets call it $r_{in}$) and returns another radius (we will call that one $r_{out}$). You decide whether to make the function anonymous or place it in a module. Make sure that the area of a circle with a radius of $r_{out}$ is twice as large as one with a radius of $r_{in}$. In other words, make sure that:
+Write a function that takes a radius as a single input (lets call it $r_{in}$) and returns another raidus (we will call that one $r_{out}$). You decide whether to make the function anonymous or place it in a module. Make sure that the area of a circle with a radius of $r_{out}$ is twice as large as one with a radius of $r_{in}$. In other words, make sure that:
 
 $
 \hspace{20mm}
@@ -81,7 +81,7 @@ For this, you may want to try out the built-in [:math.sqrt](https://www.erlang.o
 
 ```
 
-Use the function you have just defined to double the area of each of the circles in the variable `circles` and rebind this variable to the resulting data structure:
+Use the function you have just defined to double the area of each of the circles in the variable `circles` and rebind this variable to the resulting datastructure:
 
 ```elixir
 
@@ -112,7 +112,7 @@ Hints:
 
 ```
 
-The time has come to plot these circles. I have written some code that can plot data, but unfortunately this code doesn't know how to work with structs. Instead, it needs a list of maps where all keys are strings. So, your job is to preprocess the data in `circles` in such a way that it adheres to the format supported by my code. Bin a variable called `data` to the resulting data structure.
+The time has come to plot these circles. I have written some code that can plot data, but unfortunately this code doesn't know how to work with structs. Instead, it needs a list of maps where alle keys are strings. So, your job is to preprocess the data in `circles` in such a way that it adheres to the format supported by my code. Bin a variable called `data` to the resulting datastructure.
 
 ```elixir
 
