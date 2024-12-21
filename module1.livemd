@@ -40,7 +40,7 @@ All valid Elixir code will evaluate to a value. Here are a few simple examples:
 
 <!-- livebook:{"break_markdown":true} -->
 
-Data can be organized in tuples. This is a form of data structure that represents a sequence of values. A tuple can be treated as a single value even if it contains multiple values. Here are a few examples of tuples:
+Data can be organized in tuples. This is a form of data structure that represents a sequence of a fixed number of values. A tuple can be treated as a single value even if it contains multiple values. Here are a few examples of tuples:
 
 ```elixir
 {1,2}
