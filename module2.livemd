@@ -50,7 +50,7 @@ looser = not (first or best)
 
 <!-- livebook:{"break_markdown":true} -->
 
-Lets take a look at a circle:
+Lets take a look at a property of a circle:
 
 ```elixir
 r = 12
