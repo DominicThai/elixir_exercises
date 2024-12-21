@@ -74,7 +74,7 @@ Notes:
 
 <!-- livebook:{"break_markdown":true} -->
 
-There is another variant of the `if` construct that is missing the `else` part. This variant only does something if the condition (the truth value) evaluates to `true`. This is often used to print something to the screen:
+There is another variant of the `if` construct. It is missing the `else` part. This variant only does something if the condition (the truth value) evaluates to `true`. This is often used to print something to the screen:
 
 ```elixir
 if area > 180 do
