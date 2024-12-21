@@ -150,7 +150,7 @@ We are at a birthday party with a number of participants:
 participant_count = 13
 ```
 
-The host has made a layered cake. Slicing a cake is easiest if the number of slices is even. Based on the variable `participant_count`, assign the variable `easy` a truth value representing whether the job of slicing is easy.
+The host has made a layered cake. Slicing a cake is easy if the number of slices is even, and complicated if it is odd. Based on the variable `participant_count`, assign the variable `easy` a truth value representing whether the job of slicing is easy.
 
 **Note:** The function `rem` returns the remainder of an integer division. `rem(value, 2)` will thus evaluate to $1$ if `value` is odd.
 
