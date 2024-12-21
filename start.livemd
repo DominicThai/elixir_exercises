@@ -11,13 +11,13 @@ Welcome to a journey through the most simple elements of the [Elixir](https://el
 
 <!-- livebook:{"break_markdown":true} -->
 
-We will be working with Elixir through [Livebook](https://livebook.dev). This is a code editor that you essentially access through a browser. There are many ways of writing Elxir code (that doesn't involve a browser), but this brings some attractive possibilities regarding getting an overview of the code and data visualization.
+We will be working with Elixir through [Livebook](https://livebook.dev). This is a code editor that you essentially access through a browser. There are many ways of writing Elxir code (that doesn't involve a browser), but Livebook brings some attractive possibilities for getting an overview of the code and visualizing data.
 
 First, you will have to [install](https://livebook.dev/\#install) Livebook, and then you should configure it:
 
 1. Open the main page in a new tab in your browser. This can be done using the Livebook logo at the top left of the page.
 2. Click in this tab on `Settings` in the menu to the left.
-3. Under `Code editor` you enable `Render ligatures`.
+3. Under `Code editor` you enable `Render ligatures` and disable `Automatically close brackets`.
 
 <!-- livebook:{"break_markdown":true} -->
 
