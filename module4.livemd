@@ -1,6 +1,6 @@
 # Module 4: Lists, Higher-Order Functions, Pipelining and Modules
 
-## Forberedelse
+## Preparation
 
 [Earlier](beginner1.livemd) we covered tuples. They are data structures that can hold a specific number of elements. We can extract the value of such an element from a tuple either using pattern matching or using the `elem` function:
 
