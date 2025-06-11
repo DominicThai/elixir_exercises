@@ -184,8 +184,10 @@ Notice the subtle difference in how the results are displayed.
 
 Lets take a completely random year as a starting point:
 
+<!-- livebook:{"reevaluate_automatically":true} -->
+
 ```elixir
-year = 2024
+year = 2500
 ```
 
 The rules of [leap years](https://en.wikipedia.org/wiki/Leap_year) states that:
@@ -198,8 +200,11 @@ You can test it by setting your cell to auto-evaluate and trying out different v
 
 Go ahead in the cell below:
 
-```elixir
+<!-- livebook:{"reevaluate_automatically":true} -->
 
+```elixir
+leap_year? =
+  rem(year, 4) == 0 and (rem(year, 100) != 0 or rem(year, 400) == 0)
 ```
 
 Write, in the following code cell, a module called `Calendar`.
@@ -212,11 +217,36 @@ In this module you:
 In the next code cell, you should use `generate` to produce a calendar ranging from year 0 to year 3000.
 
 ```elixir
+defmodule MyCalendar do
+  def generate_month_lengths(year) do
+    leap_year =
+      rem(year, 4) == 0 and (rem(year, 100) != 0 or rem(year, 400) == 0)
+    
+    %{
+      jan: 31,
+      feb: (28 + if leap_year, do: 1, else: 0),
+      mar: 31,
+      apr: 30,
+      may: 31,
+      jun: 30,
+      jul: 31,
+      aug: 31,
+      sep: 30,
+      oct: 31,
+      nov: 30,
+      dec: 31
+    }
+  end
 
+  def generate(min_year, max_year) do
+    min_year..max_year
+    |>Enum.map(fn year -> {year, generate_month_lengths(year)} end)
+  end
+end
 ```
 
 ```elixir
-
+MyCalendar.generate(0, 3000)
 ```
 
 ## Next step ...

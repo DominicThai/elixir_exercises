@@ -145,7 +145,23 @@ And this code works exactly as the `map` function that is defined in `Enum`:
 In the following cell, make a copy of the contents of the cell with the definition of `MyEnum`. Add and implement your own version of the `filter` function next to the the `map` funktion:
 
 ```elixir
+defmodule MyEnum do
+  def map([], _fun), do: []
+  def map([h|t], fun) do
+    [fun.(h) | map(t, fun)]
+  end
 
+  def filter([], _fun), do: []
+  def filter([h|t], fun) do
+    if fun(h) do
+      [ h | filter(t, fun) ]
+    else
+      filter(t, fun)
+    end
+  end
+end
+
+MyEnum.filter([1, 2, 3, 4], fn x -> rem(x, 2) == 0 end)
 ```
 
 ## Next step ...

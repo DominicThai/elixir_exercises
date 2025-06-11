@@ -107,20 +107,26 @@ That last one should produce a warning stating that Elixir does not know about t
 
 A circle has a diameter of $30.9$:
 
+<!-- livebook:{"reevaluate_automatically":true} -->
+
 ```elixir
-d = 30.9
+d = 2
 ```
 
 Calculate the radius (by dividing the value of `d` by two) and bind the variable `r` to the result of this calculation:
 
-```elixir
+<!-- livebook:{"reevaluate_automatically":true} -->
 
+```elixir
+r = d/2
 ```
 
 A circle with radius $r$ has the circumference $2 \pi r$. Calculate the circumference of the circle in the following cell:
 
-```elixir
+<!-- livebook:{"reevaluate_automatically":true} -->
 
+```elixir
+c = 2*:math.pi*r
 ```
 
 To the right of the `➤ Evaluate` button, you will find a drop-down menu. This menu contains an option for automatically evaluating a cell when the contents of the previous code cell has changed.

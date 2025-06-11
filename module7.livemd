@@ -13,6 +13,10 @@ defmodule Person do
   def first_name(person) do
     person.name |> String.split(" ") |> Enum.at(0)
   end
+
+  def birthday(person) do
+    Map.put(person, :age, person.age + 1)
+  end
 end
 ```
 
@@ -63,13 +67,13 @@ end
 Use the cell below to experimentally figure out how this function works. You may want to hover the mouse over some of the functions.
 
 ```elixir
-
+Person.first_name(person)
 ```
 
 Create a new defintion of `Person` in the cell below. Start out with a copy of the above definition, and add a function called `birthday` that takes a person and returns the same person except that the returned person has an age that is one higher than that of the input person.
 
 ```elixir
-
+Person.birthday(person)
 ```
 
 Now, test this function:
@@ -102,6 +106,14 @@ Hints:
 
 ```elixir
 
+valid_ages = 
+  people
+  |> Enum.filter(fn person -> person.age != nil end)
+  |> Enum.map(fn person -> person.age end)
+
+average_age = Enum.sum(valid_ages) / length(valid_ages)
+
+IO.puts("Average age: #{average_age}")
 ```
 
 ## Next step ...

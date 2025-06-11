@@ -1,10 +1,22 @@
+<!-- livebook:{"default_language":"python"} -->
+
 # Module 3: Functions
 
 ```elixir
 Mix.install([
   {:vega_lite, "~> 0.1.10"},
-  {:kino_vega_lite, "~> 0.1.13"}
+  {:kino_vega_lite, "~> 0.1.13"},
+  {:pythonx, "~> 0.4.2"},
+  {:kino_pythonx, "~> 0.1.0"}
 ])
+```
+
+```pyproject.toml
+[project]
+name = "project"
+version = "0.0.0"
+requires-python = "==3.13.*"
+dependencies = []
 ```
 
 ## Preparation
@@ -74,19 +86,28 @@ Vl.new(width: 400, height: 300)
 Implement a `circumference` function that given a radius of a circle calculates the circumference of that circle:
 
 ```elixir
-
+circumference = fn r -> 2*:math.pi*r end
 ```
 
 Pick a smallest and a largest interesting radius, and produce a dataset in the variable `data_circumference` which is in a format that allows it to be plotted:
 
 ```elixir
-
+r1 = 2
+r2 = 8
+data_circumference =
+  r1..r2
+      |> Enum.map(fn x -> %{"x" => x, "f(x)" => circumference.(x)} end)
+    
 ```
 
 Now plot these data:
 
 ```elixir
-
+Vl.new(width: 400, height: 300)
+|> Vl.data_from_values(data_circumference)
+|> Vl.mark(:point)
+|> Vl.encode_field(:x, "x", type: :quantitative)
+|> Vl.encode_field(:y, "f(x)", type: :quantitative)
 ```
 
 Hover the mouse over the last `Vl.encode_field` line until you see a popup. In this popup you will find a `View on Hexdocs` link. Open this link in a new tab. Look through the documentation and figure out how to define a title for an axis.
@@ -94,7 +115,11 @@ Hover the mouse over the last `Vl.encode_field` line until you see a popup. In t
 Make a copy of the previous cell in the cell below, and update it with names for the two axes:
 
 ```elixir
-
+Vl.new(width: 400, height: 300)
+|> Vl.data_from_values(data_circumference)
+|> Vl.mark(:point)
+|> Vl.encode_field(:x, "x", type: :quantitative, title: "radius")
+|> Vl.encode_field(:y, "f(x)", type: :quantitative, title: "circumference")
 ```
 
 ## Next step ...

@@ -155,19 +155,27 @@ The host has made a layered cake. Slicing a cake is easy if the number of slices
 **Note:** The function `rem` returns the remainder of an integer division. `rem(value, 2)` will thus evaluate to $1$ if `value` is odd.
 
 ```elixir
-
+easy = false
 ```
 
 Use an `if` construction to either print out "It is easy" or "It is hard" based on the value of the variable `easy`:
 
 ```elixir
+if easy do
+  {"It is easy"}
+else
+  {"it is hard"}
+end
 
 ```
 
 Do the same with a `case` construction:
 
 ```elixir
-
+case easy do
+  true -> "it is easy"
+  false -> "it is hard"
+end
 ```
 
 ## Next step ...
